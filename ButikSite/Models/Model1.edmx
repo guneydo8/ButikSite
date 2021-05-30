@@ -1,0 +1,821 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ButikSiteModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="TblAdmin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Mail" Type="varchar" MaxLength="50" />
+          <Property Name="Şifre" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TblDuyurular">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DuyuruBaşlık" Type="varchar" MaxLength="50" />
+          <Property Name="Duyuruİçerik" Type="varchar(max)" />
+          <Property Name="Tarih" Type="smalldatetime" />
+        </EntityType>
+        <EntityType Name="TblFavoriler">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Müşteri" Type="int" />
+          <Property Name="Ürün" Type="int" />
+          <Property Name="Tarih" Type="smalldatetime" />
+        </EntityType>
+        <EntityType Name="TblKategoriler">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KategoriAd" Type="varchar" MaxLength="50" />
+          <Property Name="Durum" Type="bit" />
+        </EntityType>
+        <EntityType Name="TblMarkalar">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Marka" Type="varchar" MaxLength="50" />
+          <Property Name="Durum" Type="bit" />
+        </EntityType>
+        <EntityType Name="TblMesajlar">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Müşteri" Type="int" />
+          <Property Name="Başlık" Type="varchar" MaxLength="50" />
+          <Property Name="İçerik" Type="varchar(max)" />
+          <Property Name="Tarih" Type="smalldatetime" />
+        </EntityType>
+        <EntityType Name="TblMüşteriler">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ad" Type="varchar" MaxLength="50" />
+          <Property Name="Soyad" Type="varchar" MaxLength="50" />
+          <Property Name="Telefon" Type="varchar" MaxLength="50" />
+          <Property Name="Mail" Type="varchar" MaxLength="50" />
+          <Property Name="Adres" Type="varchar" MaxLength="500" />
+          <Property Name="Şifre" Type="varchar" MaxLength="50" />
+          <Property Name="Durum" Type="bit" />
+        </EntityType>
+        <EntityType Name="TblSatışlar">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ürün" Type="int" />
+          <Property Name="Müşteri" Type="int" />
+          <Property Name="Fiyat" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Tarih" Type="smalldatetime" />
+          <Property Name="SiparişNot" Type="varchar(max)" />
+          <Property Name="Adet" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="TblSepetim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Müşteri" Type="int" />
+          <Property Name="Ürün" Type="int" />
+          <Property Name="Tarih" Type="smalldatetime" />
+        </EntityType>
+        <EntityType Name="TblÜrünler">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ÜrünAd" Type="varchar" MaxLength="50" />
+          <Property Name="Kategori" Type="int" />
+          <Property Name="Marka" Type="int" />
+          <Property Name="Stok" Type="int" />
+          <Property Name="AlışFiyat" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="SatışFiyat" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="ÜrünBilgi" Type="varchar(max)" />
+          <Property Name="ÜrünGörsel" Type="varchar(max)" />
+          <Property Name="Durum" Type="bit" />
+          <Property Name="Cinsiyet" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="TblYorumlar">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ürün" Type="int" />
+          <Property Name="Müşteri" Type="int" />
+          <Property Name="Konu" Type="varchar" MaxLength="50" />
+          <Property Name="Yorum" Type="varchar(max)" />
+          <Property Name="Tarih" Type="smalldatetime" />
+        </EntityType>
+        <Association Name="FK_TblFavoriler_TblMüşteriler">
+          <End Role="TblMüşteriler" Type="Self.TblMüşteriler" Multiplicity="0..1" />
+          <End Role="TblFavoriler" Type="Self.TblFavoriler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblMüşteriler">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TblFavoriler">
+              <PropertyRef Name="Müşteri" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblFavoriler_TblÜrünler">
+          <End Role="TblÜrünler" Type="Self.TblÜrünler" Multiplicity="0..1" />
+          <End Role="TblFavoriler" Type="Self.TblFavoriler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblÜrünler">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TblFavoriler">
+              <PropertyRef Name="Ürün" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblMesajlar_TblMüşteriler">
+          <End Role="TblMüşteriler" Type="Self.TblMüşteriler" Multiplicity="0..1" />
+          <End Role="TblMesajlar" Type="Self.TblMesajlar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblMüşteriler">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TblMesajlar">
+              <PropertyRef Name="Müşteri" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblSatışlar_TblMüşteriler">
+          <End Role="TblMüşteriler" Type="Self.TblMüşteriler" Multiplicity="0..1" />
+          <End Role="TblSatışlar" Type="Self.TblSatışlar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblMüşteriler">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TblSatışlar">
+              <PropertyRef Name="Müşteri" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblSatışlar_TblÜrünler">
+          <End Role="TblÜrünler" Type="Self.TblÜrünler" Multiplicity="0..1" />
+          <End Role="TblSatışlar" Type="Self.TblSatışlar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblÜrünler">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TblSatışlar">
+              <PropertyRef Name="Ürün" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblSepetim_TblMüşteriler">
+          <End Role="TblMüşteriler" Type="Self.TblMüşteriler" Multiplicity="0..1" />
+          <End Role="TblSepetim" Type="Self.TblSepetim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblMüşteriler">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TblSepetim">
+              <PropertyRef Name="Müşteri" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblSepetim_TblÜrünler">
+          <End Role="TblÜrünler" Type="Self.TblÜrünler" Multiplicity="0..1" />
+          <End Role="TblSepetim" Type="Self.TblSepetim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblÜrünler">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TblSepetim">
+              <PropertyRef Name="Ürün" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblÜrünler_TblKategoriler">
+          <End Role="TblKategoriler" Type="Self.TblKategoriler" Multiplicity="0..1" />
+          <End Role="TblÜrünler" Type="Self.TblÜrünler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblKategoriler">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TblÜrünler">
+              <PropertyRef Name="Kategori" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblÜrünler_TblMarkalar">
+          <End Role="TblMarkalar" Type="Self.TblMarkalar" Multiplicity="0..1" />
+          <End Role="TblÜrünler" Type="Self.TblÜrünler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblMarkalar">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TblÜrünler">
+              <PropertyRef Name="Marka" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblYorumlar_TblMüşteriler">
+          <End Role="TblMüşteriler" Type="Self.TblMüşteriler" Multiplicity="0..1" />
+          <End Role="TblYorumlar" Type="Self.TblYorumlar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblMüşteriler">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TblYorumlar">
+              <PropertyRef Name="Müşteri" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblYorumlar_TblÜrünler">
+          <End Role="TblÜrünler" Type="Self.TblÜrünler" Multiplicity="0..1" />
+          <End Role="TblYorumlar" Type="Self.TblYorumlar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblÜrünler">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TblYorumlar">
+              <PropertyRef Name="Ürün" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="enazalımlımüşteri" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="enazsatılankategorı" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="enazsatılanMarka" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="enazsatılanurun" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="encokalımlımüşteri" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="encoksatılankategorı" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="encoksatılanMarka" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="trendfiyat" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="trendgörsel" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="trendler" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="ButikSiteModelStoreContainer">
+          <EntitySet Name="TblAdmin" EntityType="Self.TblAdmin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblDuyurular" EntityType="Self.TblDuyurular" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblFavoriler" EntityType="Self.TblFavoriler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblKategoriler" EntityType="Self.TblKategoriler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblMarkalar" EntityType="Self.TblMarkalar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblMesajlar" EntityType="Self.TblMesajlar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblMüşteriler" EntityType="Self.TblMüşteriler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblSatışlar" EntityType="Self.TblSatışlar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblSepetim" EntityType="Self.TblSepetim" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblÜrünler" EntityType="Self.TblÜrünler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblYorumlar" EntityType="Self.TblYorumlar" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_TblFavoriler_TblMüşteriler" Association="Self.FK_TblFavoriler_TblMüşteriler">
+            <End Role="TblMüşteriler" EntitySet="TblMüşteriler" />
+            <End Role="TblFavoriler" EntitySet="TblFavoriler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblFavoriler_TblÜrünler" Association="Self.FK_TblFavoriler_TblÜrünler">
+            <End Role="TblÜrünler" EntitySet="TblÜrünler" />
+            <End Role="TblFavoriler" EntitySet="TblFavoriler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblMesajlar_TblMüşteriler" Association="Self.FK_TblMesajlar_TblMüşteriler">
+            <End Role="TblMüşteriler" EntitySet="TblMüşteriler" />
+            <End Role="TblMesajlar" EntitySet="TblMesajlar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblSatışlar_TblMüşteriler" Association="Self.FK_TblSatışlar_TblMüşteriler">
+            <End Role="TblMüşteriler" EntitySet="TblMüşteriler" />
+            <End Role="TblSatışlar" EntitySet="TblSatışlar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblSatışlar_TblÜrünler" Association="Self.FK_TblSatışlar_TblÜrünler">
+            <End Role="TblÜrünler" EntitySet="TblÜrünler" />
+            <End Role="TblSatışlar" EntitySet="TblSatışlar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblSepetim_TblMüşteriler" Association="Self.FK_TblSepetim_TblMüşteriler">
+            <End Role="TblMüşteriler" EntitySet="TblMüşteriler" />
+            <End Role="TblSepetim" EntitySet="TblSepetim" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblSepetim_TblÜrünler" Association="Self.FK_TblSepetim_TblÜrünler">
+            <End Role="TblÜrünler" EntitySet="TblÜrünler" />
+            <End Role="TblSepetim" EntitySet="TblSepetim" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblÜrünler_TblKategoriler" Association="Self.FK_TblÜrünler_TblKategoriler">
+            <End Role="TblKategoriler" EntitySet="TblKategoriler" />
+            <End Role="TblÜrünler" EntitySet="TblÜrünler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblÜrünler_TblMarkalar" Association="Self.FK_TblÜrünler_TblMarkalar">
+            <End Role="TblMarkalar" EntitySet="TblMarkalar" />
+            <End Role="TblÜrünler" EntitySet="TblÜrünler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblYorumlar_TblMüşteriler" Association="Self.FK_TblYorumlar_TblMüşteriler">
+            <End Role="TblMüşteriler" EntitySet="TblMüşteriler" />
+            <End Role="TblYorumlar" EntitySet="TblYorumlar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblYorumlar_TblÜrünler" Association="Self.FK_TblYorumlar_TblÜrünler">
+            <End Role="TblÜrünler" EntitySet="TblÜrünler" />
+            <End Role="TblYorumlar" EntitySet="TblYorumlar" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ButikSiteModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="TblKategoriler">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KategoriAd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TblÜrünler" Relationship="Self.FK_TblÜrünler_TblKategoriler" FromRole="TblKategoriler" ToRole="TblÜrünler" />
+          <Property Name="Durum" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="TblMarkalar">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Marka" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TblÜrünler" Relationship="Self.FK_TblÜrünler_TblMarkalar" FromRole="TblMarkalar" ToRole="TblÜrünler" />
+          <Property Name="Durum" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="TblMüşteriler">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Soyad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Telefon" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Adres" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Şifre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TblSatışlar" Relationship="ButikSiteModel.FK_TblSatışlar_TblMüşteriler" FromRole="TblMüşteriler" ToRole="TblSatışlar" />
+          <NavigationProperty Name="TblMesajlar" Relationship="ButikSiteModel.FK_TblMesajlar_TblMüşteriler" FromRole="TblMüşteriler" ToRole="TblMesajlar" />
+          <NavigationProperty Name="TblYorumlar" Relationship="ButikSiteModel.FK_TblYorumlar_TblMüşteriler" FromRole="TblMüşteriler" ToRole="TblYorumlar" />
+          <NavigationProperty Name="TblFavoriler" Relationship="ButikSiteModel.FK_TblFavoriler_TblMüşteriler" FromRole="TblMüşteriler" ToRole="TblFavoriler" />
+          <Property Name="Durum" Type="Boolean" />
+          <NavigationProperty Name="TblSepetim" Relationship="ButikSiteModel.FK_TblSepetim_TblMüşteriler" FromRole="TblMüşteriler" ToRole="TblSepetim" />
+        </EntityType>
+        <EntityType Name="TblÜrünler">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ÜrünAd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Kategori" Type="Int32" />
+          <Property Name="Marka" Type="Int32" />
+          <Property Name="Stok" Type="Int32" />
+          <Property Name="AlışFiyat" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="SatışFiyat" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ÜrünBilgi" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TblKategoriler" Relationship="Self.FK_TblÜrünler_TblKategoriler" FromRole="TblÜrünler" ToRole="TblKategoriler" />
+          <NavigationProperty Name="TblMarkalar" Relationship="Self.FK_TblÜrünler_TblMarkalar" FromRole="TblÜrünler" ToRole="TblMarkalar" />
+          <NavigationProperty Name="TblSatışlar" Relationship="ButikSiteModel.FK_TblSatışlar_TblÜrünler" FromRole="TblÜrünler" ToRole="TblSatışlar" />
+          <Property Name="ÜrünGörsel" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TblYorumlar" Relationship="ButikSiteModel.FK_TblYorumlar_TblÜrünler" FromRole="TblÜrünler" ToRole="TblYorumlar" />
+          <NavigationProperty Name="TblFavoriler" Relationship="ButikSiteModel.FK_TblFavoriler_TblÜrünler" FromRole="TblÜrünler" ToRole="TblFavoriler" />
+          <Property Name="Durum" Type="Boolean" />
+          <Property Name="Cinsiyet" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="TblSepetim" Relationship="ButikSiteModel.FK_TblSepetim_TblÜrünler" FromRole="TblÜrünler" ToRole="TblSepetim" />
+        </EntityType>
+        <Association Name="FK_TblÜrünler_TblKategoriler">
+          <End Role="TblKategoriler" Type="Self.TblKategoriler" Multiplicity="0..1" />
+          <End Role="TblÜrünler" Type="Self.TblÜrünler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblKategoriler">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TblÜrünler">
+              <PropertyRef Name="Kategori" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblÜrünler_TblMarkalar">
+          <End Role="TblMarkalar" Type="Self.TblMarkalar" Multiplicity="0..1" />
+          <End Role="TblÜrünler" Type="Self.TblÜrünler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblMarkalar">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TblÜrünler">
+              <PropertyRef Name="Marka" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ButikSiteEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TblKategoriler" EntityType="Self.TblKategoriler" />
+          <EntitySet Name="TblMarkalar" EntityType="Self.TblMarkalar" />
+          <EntitySet Name="TblMüşteriler" EntityType="Self.TblMüşteriler" />
+          <EntitySet Name="TblÜrünler" EntityType="Self.TblÜrünler" />
+          <AssociationSet Name="FK_TblÜrünler_TblKategoriler" Association="Self.FK_TblÜrünler_TblKategoriler">
+            <End Role="TblKategoriler" EntitySet="TblKategoriler" />
+            <End Role="TblÜrünler" EntitySet="TblÜrünler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblÜrünler_TblMarkalar" Association="Self.FK_TblÜrünler_TblMarkalar">
+            <End Role="TblMarkalar" EntitySet="TblMarkalar" />
+            <End Role="TblÜrünler" EntitySet="TblÜrünler" />
+          </AssociationSet>
+          <EntitySet Name="TblSatışlar" EntityType="ButikSiteModel.TblSatışlar" />
+          <AssociationSet Name="FK_TblSatışlar_TblMüşteriler" Association="ButikSiteModel.FK_TblSatışlar_TblMüşteriler">
+            <End Role="TblMüşteriler" EntitySet="TblMüşteriler" />
+            <End Role="TblSatışlar" EntitySet="TblSatışlar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblSatışlar_TblÜrünler" Association="ButikSiteModel.FK_TblSatışlar_TblÜrünler">
+            <End Role="TblÜrünler" EntitySet="TblÜrünler" />
+            <End Role="TblSatışlar" EntitySet="TblSatışlar" />
+          </AssociationSet>
+          <EntitySet Name="TblMesajlar" EntityType="ButikSiteModel.TblMesajlar" />
+          <EntitySet Name="TblYorumlar" EntityType="ButikSiteModel.TblYorumlar" />
+          <AssociationSet Name="FK_TblMesajlar_TblMüşteriler" Association="ButikSiteModel.FK_TblMesajlar_TblMüşteriler">
+            <End Role="TblMüşteriler" EntitySet="TblMüşteriler" />
+            <End Role="TblMesajlar" EntitySet="TblMesajlar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblYorumlar_TblMüşteriler" Association="ButikSiteModel.FK_TblYorumlar_TblMüşteriler">
+            <End Role="TblMüşteriler" EntitySet="TblMüşteriler" />
+            <End Role="TblYorumlar" EntitySet="TblYorumlar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblYorumlar_TblÜrünler" Association="ButikSiteModel.FK_TblYorumlar_TblÜrünler">
+            <End Role="TblÜrünler" EntitySet="TblÜrünler" />
+            <End Role="TblYorumlar" EntitySet="TblYorumlar" />
+          </AssociationSet>
+          <EntitySet Name="TblDuyurular" EntityType="ButikSiteModel.TblDuyurular" />
+          <EntitySet Name="TblAdmin" EntityType="ButikSiteModel.TblAdmin" />
+          <FunctionImport Name="trendler" ReturnType="Collection(String)" />
+          <FunctionImport Name="enazalımlımüşteri" ReturnType="Collection(String)" />
+          <FunctionImport Name="enazsatılankategorı" ReturnType="Collection(String)" />
+          <FunctionImport Name="enazsatılanMarka" ReturnType="Collection(String)" />
+          <FunctionImport Name="enazsatılanurun" ReturnType="Collection(String)" />
+          <FunctionImport Name="encokalımlımüşteri" ReturnType="Collection(String)" />
+          <FunctionImport Name="encoksatılankategorı" ReturnType="Collection(String)" />
+          <FunctionImport Name="encoksatılanMarka" ReturnType="Collection(String)" />
+          <EntitySet Name="TblFavoriler" EntityType="ButikSiteModel.TblFavoriler" />
+          <AssociationSet Name="FK_TblFavoriler_TblMüşteriler" Association="ButikSiteModel.FK_TblFavoriler_TblMüşteriler">
+            <End Role="TblMüşteriler" EntitySet="TblMüşteriler" />
+            <End Role="TblFavoriler" EntitySet="TblFavoriler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblFavoriler_TblÜrünler" Association="ButikSiteModel.FK_TblFavoriler_TblÜrünler">
+            <End Role="TblÜrünler" EntitySet="TblÜrünler" />
+            <End Role="TblFavoriler" EntitySet="TblFavoriler" />
+          </AssociationSet>
+          <EntitySet Name="TblSepetim" EntityType="ButikSiteModel.TblSepetim" />
+          <AssociationSet Name="FK_TblSepetim_TblMüşteriler" Association="ButikSiteModel.FK_TblSepetim_TblMüşteriler">
+            <End Role="TblMüşteriler" EntitySet="TblMüşteriler" />
+            <End Role="TblSepetim" EntitySet="TblSepetim" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblSepetim_TblÜrünler" Association="ButikSiteModel.FK_TblSepetim_TblÜrünler">
+            <End Role="TblÜrünler" EntitySet="TblÜrünler" />
+            <End Role="TblSepetim" EntitySet="TblSepetim" />
+          </AssociationSet>
+          <FunctionImport Name="trendfiyat" ReturnType="Collection(Decimal)" />
+          <FunctionImport Name="trendgörsel" ReturnType="Collection(String)" />
+        </EntityContainer>
+        <EntityType Name="TblSatışlar">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ürün" Type="Int32" />
+          <Property Name="Müşteri" Type="Int32" />
+          <Property Name="Fiyat" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Tarih" Type="DateTime" Precision="0" />
+          <Property Name="SiparişNot" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TblMüşteriler" Relationship="ButikSiteModel.FK_TblSatışlar_TblMüşteriler" FromRole="TblSatışlar" ToRole="TblMüşteriler" />
+          <NavigationProperty Name="TblÜrünler" Relationship="ButikSiteModel.FK_TblSatışlar_TblÜrünler" FromRole="TblSatışlar" ToRole="TblÜrünler" />
+          <Property Name="Adet" Type="Byte" />
+        </EntityType>
+        <Association Name="FK_TblSatışlar_TblMüşteriler">
+          <End Type="ButikSiteModel.TblMüşteriler" Role="TblMüşteriler" Multiplicity="0..1" />
+          <End Type="ButikSiteModel.TblSatışlar" Role="TblSatışlar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblMüşteriler">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TblSatışlar">
+              <PropertyRef Name="Müşteri" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblSatışlar_TblÜrünler">
+          <End Type="ButikSiteModel.TblÜrünler" Role="TblÜrünler" Multiplicity="0..1" />
+          <End Type="ButikSiteModel.TblSatışlar" Role="TblSatışlar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblÜrünler">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TblSatışlar">
+              <PropertyRef Name="Ürün" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TblMesajlar">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Müşteri" Type="Int32" />
+          <Property Name="Başlık" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="İçerik" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Tarih" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="TblMüşteriler" Relationship="ButikSiteModel.FK_TblMesajlar_TblMüşteriler" FromRole="TblMesajlar" ToRole="TblMüşteriler" />
+        </EntityType>
+        <EntityType Name="TblYorumlar">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ürün" Type="Int32" />
+          <Property Name="Müşteri" Type="Int32" />
+          <Property Name="Konu" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Yorum" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Tarih" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="TblMüşteriler" Relationship="ButikSiteModel.FK_TblYorumlar_TblMüşteriler" FromRole="TblYorumlar" ToRole="TblMüşteriler" />
+          <NavigationProperty Name="TblÜrünler" Relationship="ButikSiteModel.FK_TblYorumlar_TblÜrünler" FromRole="TblYorumlar" ToRole="TblÜrünler" />
+        </EntityType>
+        <Association Name="FK_TblMesajlar_TblMüşteriler">
+          <End Type="ButikSiteModel.TblMüşteriler" Role="TblMüşteriler" Multiplicity="0..1" />
+          <End Type="ButikSiteModel.TblMesajlar" Role="TblMesajlar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblMüşteriler">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TblMesajlar">
+              <PropertyRef Name="Müşteri" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblYorumlar_TblMüşteriler">
+          <End Type="ButikSiteModel.TblMüşteriler" Role="TblMüşteriler" Multiplicity="0..1" />
+          <End Type="ButikSiteModel.TblYorumlar" Role="TblYorumlar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblMüşteriler">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TblYorumlar">
+              <PropertyRef Name="Müşteri" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblYorumlar_TblÜrünler">
+          <End Type="ButikSiteModel.TblÜrünler" Role="TblÜrünler" Multiplicity="0..1" />
+          <End Type="ButikSiteModel.TblYorumlar" Role="TblYorumlar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblÜrünler">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TblYorumlar">
+              <PropertyRef Name="Ürün" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TblDuyurular">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DuyuruBaşlık" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Duyuruİçerik" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Tarih" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="TblAdmin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Şifre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="TblFavoriler">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Müşteri" Type="Int32" />
+          <Property Name="Ürün" Type="Int32" />
+          <NavigationProperty Name="TblMüşteriler" Relationship="ButikSiteModel.FK_TblFavoriler_TblMüşteriler" FromRole="TblFavoriler" ToRole="TblMüşteriler" />
+          <NavigationProperty Name="TblÜrünler" Relationship="ButikSiteModel.FK_TblFavoriler_TblÜrünler" FromRole="TblFavoriler" ToRole="TblÜrünler" />
+          <Property Name="Tarih" Type="DateTime" Precision="0" />
+        </EntityType>
+        <Association Name="FK_TblFavoriler_TblMüşteriler">
+          <End Type="ButikSiteModel.TblMüşteriler" Role="TblMüşteriler" Multiplicity="0..1" />
+          <End Type="ButikSiteModel.TblFavoriler" Role="TblFavoriler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblMüşteriler">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TblFavoriler">
+              <PropertyRef Name="Müşteri" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblFavoriler_TblÜrünler">
+          <End Type="ButikSiteModel.TblÜrünler" Role="TblÜrünler" Multiplicity="0..1" />
+          <End Type="ButikSiteModel.TblFavoriler" Role="TblFavoriler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblÜrünler">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TblFavoriler">
+              <PropertyRef Name="Ürün" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TblSepetim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Müşteri" Type="Int32" />
+          <Property Name="Ürün" Type="Int32" />
+          <Property Name="Tarih" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="TblMüşteriler" Relationship="ButikSiteModel.FK_TblSepetim_TblMüşteriler" FromRole="TblSepetim" ToRole="TblMüşteriler" />
+          <NavigationProperty Name="TblÜrünler" Relationship="ButikSiteModel.FK_TblSepetim_TblÜrünler" FromRole="TblSepetim" ToRole="TblÜrünler" />
+        </EntityType>
+        <Association Name="FK_TblSepetim_TblMüşteriler">
+          <End Type="ButikSiteModel.TblMüşteriler" Role="TblMüşteriler" Multiplicity="0..1" />
+          <End Type="ButikSiteModel.TblSepetim" Role="TblSepetim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblMüşteriler">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TblSepetim">
+              <PropertyRef Name="Müşteri" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblSepetim_TblÜrünler">
+          <End Type="ButikSiteModel.TblÜrünler" Role="TblÜrünler" Multiplicity="0..1" />
+          <End Type="ButikSiteModel.TblSepetim" Role="TblSepetim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblÜrünler">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TblSepetim">
+              <PropertyRef Name="Ürün" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ButikSiteModelStoreContainer" CdmEntityContainer="ButikSiteEntities">
+          <EntitySetMapping Name="TblKategoriler">
+            <EntityTypeMapping TypeName="ButikSiteModel.TblKategoriler">
+              <MappingFragment StoreEntitySet="TblKategoriler">
+                <ScalarProperty Name="Durum" ColumnName="Durum" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="KategoriAd" ColumnName="KategoriAd" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblMarkalar">
+            <EntityTypeMapping TypeName="ButikSiteModel.TblMarkalar">
+              <MappingFragment StoreEntitySet="TblMarkalar">
+                <ScalarProperty Name="Durum" ColumnName="Durum" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Marka" ColumnName="Marka" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblMüşteriler">
+            <EntityTypeMapping TypeName="ButikSiteModel.TblMüşteriler">
+              <MappingFragment StoreEntitySet="TblMüşteriler">
+                <ScalarProperty Name="Durum" ColumnName="Durum" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Ad" ColumnName="Ad" />
+                <ScalarProperty Name="Soyad" ColumnName="Soyad" />
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="Adres" ColumnName="Adres" />
+                <ScalarProperty Name="Şifre" ColumnName="Şifre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblÜrünler">
+            <EntityTypeMapping TypeName="ButikSiteModel.TblÜrünler">
+              <MappingFragment StoreEntitySet="TblÜrünler">
+                <ScalarProperty Name="Cinsiyet" ColumnName="Cinsiyet" />
+                <ScalarProperty Name="Durum" ColumnName="Durum" />
+                <ScalarProperty Name="ÜrünGörsel" ColumnName="ÜrünGörsel" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ÜrünAd" ColumnName="ÜrünAd" />
+                <ScalarProperty Name="Kategori" ColumnName="Kategori" />
+                <ScalarProperty Name="Marka" ColumnName="Marka" />
+                <ScalarProperty Name="Stok" ColumnName="Stok" />
+                <ScalarProperty Name="AlışFiyat" ColumnName="AlışFiyat" />
+                <ScalarProperty Name="SatışFiyat" ColumnName="SatışFiyat" />
+                <ScalarProperty Name="ÜrünBilgi" ColumnName="ÜrünBilgi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblSatışlar">
+            <EntityTypeMapping TypeName="ButikSiteModel.TblSatışlar">
+              <MappingFragment StoreEntitySet="TblSatışlar">
+                <ScalarProperty Name="Adet" ColumnName="Adet" />
+                <ScalarProperty Name="SiparişNot" ColumnName="SiparişNot" />
+                <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+                <ScalarProperty Name="Fiyat" ColumnName="Fiyat" />
+                <ScalarProperty Name="Müşteri" ColumnName="Müşteri" />
+                <ScalarProperty Name="Ürün" ColumnName="Ürün" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblMesajlar">
+            <EntityTypeMapping TypeName="ButikSiteModel.TblMesajlar">
+              <MappingFragment StoreEntitySet="TblMesajlar">
+                <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+                <ScalarProperty Name="İçerik" ColumnName="İçerik" />
+                <ScalarProperty Name="Başlık" ColumnName="Başlık" />
+                <ScalarProperty Name="Müşteri" ColumnName="Müşteri" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblYorumlar">
+            <EntityTypeMapping TypeName="ButikSiteModel.TblYorumlar">
+              <MappingFragment StoreEntitySet="TblYorumlar">
+                <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+                <ScalarProperty Name="Yorum" ColumnName="Yorum" />
+                <ScalarProperty Name="Konu" ColumnName="Konu" />
+                <ScalarProperty Name="Müşteri" ColumnName="Müşteri" />
+                <ScalarProperty Name="Ürün" ColumnName="Ürün" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblDuyurular">
+            <EntityTypeMapping TypeName="ButikSiteModel.TblDuyurular">
+              <MappingFragment StoreEntitySet="TblDuyurular">
+                <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+                <ScalarProperty Name="Duyuruİçerik" ColumnName="Duyuruİçerik" />
+                <ScalarProperty Name="DuyuruBaşlık" ColumnName="DuyuruBaşlık" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblAdmin">
+            <EntityTypeMapping TypeName="ButikSiteModel.TblAdmin">
+              <MappingFragment StoreEntitySet="TblAdmin">
+                <ScalarProperty Name="Şifre" ColumnName="Şifre" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="trendler" FunctionName="ButikSiteModel.Store.trendler" />
+          <FunctionImportMapping FunctionImportName="enazalımlımüşteri" FunctionName="ButikSiteModel.Store.enazalımlımüşteri" />
+          <FunctionImportMapping FunctionImportName="enazsatılankategorı" FunctionName="ButikSiteModel.Store.enazsatılankategorı" />
+          <FunctionImportMapping FunctionImportName="enazsatılanMarka" FunctionName="ButikSiteModel.Store.enazsatılanMarka" />
+          <FunctionImportMapping FunctionImportName="enazsatılanurun" FunctionName="ButikSiteModel.Store.enazsatılanurun" />
+          <FunctionImportMapping FunctionImportName="encokalımlımüşteri" FunctionName="ButikSiteModel.Store.encokalımlımüşteri" />
+          <FunctionImportMapping FunctionImportName="encoksatılankategorı" FunctionName="ButikSiteModel.Store.encoksatılankategorı" />
+          <FunctionImportMapping FunctionImportName="encoksatılanMarka" FunctionName="ButikSiteModel.Store.encoksatılanMarka" />
+          <EntitySetMapping Name="TblFavoriler">
+            <EntityTypeMapping TypeName="ButikSiteModel.TblFavoriler">
+              <MappingFragment StoreEntitySet="TblFavoriler">
+                <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+                <ScalarProperty Name="Ürün" ColumnName="Ürün" />
+                <ScalarProperty Name="Müşteri" ColumnName="Müşteri" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblSepetim">
+            <EntityTypeMapping TypeName="ButikSiteModel.TblSepetim">
+              <MappingFragment StoreEntitySet="TblSepetim">
+                <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+                <ScalarProperty Name="Ürün" ColumnName="Ürün" />
+                <ScalarProperty Name="Müşteri" ColumnName="Müşteri" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="trendfiyat" FunctionName="ButikSiteModel.Store.trendfiyat" />
+          <FunctionImportMapping FunctionImportName="trendgörsel" FunctionName="ButikSiteModel.Store.trendgörsel" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

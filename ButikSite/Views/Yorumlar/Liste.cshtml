@@ -1,0 +1,35 @@
+﻿@using ButikSite.Models
+@model List<TblYorumlar>
+@{
+    ViewBag.Title = "Liste";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<table class="table table-hover">
+    <tr style="background-color:#140832;color:white">
+
+        <th>ÜRÜN</th>
+        <th>MÜŞTERİ</th>
+        <th>KONU</th>
+        <th>YORUM</th>
+        <th>TARİH</th>
+        <th>İŞLEMLER</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>@item.TblÜrünler.ÜrünAd</td>
+    <td>@item.TblMüşteriler.Ad @item.TblMüşteriler.Soyad</td>
+    <td>@item.Konu</td>
+    <td>@item.Yorum</td>
+
+    <td>@Convert.ToDateTime(item.Tarih).ToString("dd/MMMM/yyyy")</td>
+    <td><a href="/Yorumlar/Sil/@item.Id" class="btn btn-danger" style="background-color:#090020">Sil</a></td>
+    
+
+</tr>
+
+    }
+</table>
+

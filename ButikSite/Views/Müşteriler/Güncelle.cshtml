@@ -1,0 +1,35 @@
+﻿@model ButikSite.Models.TblMüşteriler
+@{
+    ViewBag.Title = "Güncelle";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+<br />
+@using (Html.BeginForm("Güncelle2", "Müşteriler", FormMethod.Post))
+{
+
+    @Html.HiddenFor(x => x.Id)
+    <label>Ad</label>
+    @Html.TextBoxFor(x => x.Ad, new { @class = "form-control" })
+    <br />
+   
+    <label>Soyad</label>
+    @Html.TextBoxFor(x => x.Soyad, new { @class = "form-control" })
+    <br />
+    <label>Telefon</label>
+    @Html.TextBoxFor(x => x.Telefon, new { @class = "form-control" })
+    <br />
+    <label>Mail</label>
+    @Html.TextBoxFor(x => x.Mail, new { @class = "form-control" })
+    <br />
+    <label>Adres</label>
+    @Html.TextBoxFor(x => x.Adres, new { @class = "form-control" })
+    <br />
+    <label>Şifre</label>
+    @Html.TextBoxFor(x => x.Şifre, new { @class = "form-control" })
+    <br />
+
+    <button class="btn btn-primary">Güncelle</button>
+}
+
+
+

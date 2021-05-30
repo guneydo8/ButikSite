@@ -1,0 +1,23 @@
+﻿@model ButikSite.Models.TblDuyurular
+@{
+    ViewBag.Title = "Güncelle";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<br />
+@using (Html.BeginForm("Güncelle2", "Duyurular", FormMethod.Post))
+{
+
+    @Html.HiddenFor(x => x.Id)
+    <label>Konu</label>
+    @Html.TextBoxFor(x => x.DuyuruBaşlık, new { @class = "form-control" })
+    <br />
+
+    <label>Duyuru</label>
+    @Html.TextBoxFor(x => x.Duyuruİçerik, new { @class = "form-control" })
+    <br />
+    <button class="btn btn-primary">Güncelle</button>
+}
+
+
+

@@ -1,0 +1,62 @@
+﻿@using ButikSite.Models
+@model List<TblAdmin>
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+
+<table class="table table-hover">
+    <tr style="background-color:#140832;color:white">
+        <th>ID</th>
+        <th>KULLANICI</th>
+        <th>ŞİFRE</th>
+        <th>İŞLEMLER</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.Mail</td>
+            <td>@item.Şifre</td>
+
+            <td>
+                <a href="/Ayarlar/Sil/@item.Id" class="btn btn-danger" style="background-color:#4e1cce">Sil</a>
+                <a href="/Ayarlar/Güncelle/@item.Id" class="btn btn-success" style="background-color:#2a0a7c">Güncelle</a>
+
+            </td>
+        </tr>
+
+    }
+</table>
+
+<button class="btn btn-primary" style="background-color:#140832" data-toggle="modal" data-target="#Modal1">Yeni Admin</button>
+
+<div class="modal" id="Modal1">
+    <div class="modal-dialog">
+        <div class="modal-content" style="background-color:#808080">
+            <div class="modal-header">
+                <h2 class="modal-title">Yeni Admin Girişi</h2>
+            </div>
+
+            <form method="post" action="/Ayarlar/Ekle/">
+                <div class="modal-body">
+                    <label>Kullanıcı Mail</label>
+                    <input type="email" class="form-control" name="Mail" />
+                    <br />
+                    <label>Kullanıcı Şifre</label>
+                    <input type="text" class="form-control" name="Şifre" />
+                    <br />
+                    <button class="btn btn-group-justified" style="background-color:#222222;color:white">Kaydet</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

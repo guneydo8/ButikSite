@@ -1,0 +1,79 @@
+﻿
+@{
+    Layout = null;
+}
+
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+body {font-family: "Lato", sans-serif;}
+
+.sidebar {
+  height: 100%;
+  width: 160px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  padding-top: 16px;
+}
+
+.sidebar a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 20px;
+  color: #818181;
+  display: block;
+}
+
+.sidebar a:hover {
+  color: #f1f1f1;
+}
+
+.main {
+  margin-left: 160px; /* Same as the width of the sidenav */
+  padding: 0px 10px;
+}
+
+@@media screen and (max-height: 450px) {
+  .sidebar {padding-top: 15px;}
+  .sidebar a {font-size: 18px;}
+}
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <a href="#home"><i class="fa fa-fw fa-home"></i>&nbsp;Ana Sayfa</a>
+        <a href="/Kategoriler/Liste/"><i class="fa fa-fw fa-align-left"></i>&nbsp;Kategoriler</a>
+        <a href="/Markalar/Liste/"><i class="fa fa-fw fa-apple"></i>&nbsp;Markalar</a>
+        <a href="/Ürünler/Liste/"><i class="fa fa-fw fa-dropbox"></i>&nbsp;Ürünler</a>
+        <a href="/Satışlar/Liste/"><i class="fa fa-fw fa-cart-plus"></i>&nbsp;Satışlar</a>
+        <a href="/Müşteriler/Liste"><i class="fa fa-fw fa-user"></i>&nbsp;Müşteriler</a>
+        <a href="/İstatistikler/Liste/"><i class="fa fa-fw fa-line-chart"></i>&nbsp;İstatistikler</a>
+        <a href="#contact"><i class="fa fa-fw fa-free-code-camp"></i>&nbsp;Trendler</a>
+        <a href="/Favoriler/Liste/"><i class="fa fa-fw fa-heart"></i>&nbsp;Favoriler</a>
+        <a href="/Grafikler/Liste/"><i class="fa fa-fw fa-pie-chart"></i>&nbsp;Grafikler</a>
+        <a href="#contact"><i class="fa fa-fw fa-amazon"></i>&nbsp;Vitrin</a>
+        <a href="/Ayarlar/Index/"><i class="fa fa-fw fa-cog"></i>&nbsp;Ayarlar</a>
+        <a href="/Duyurular/Liste/"><i class="fa fa-fw  fa-bell-o"></i>&nbsp;Duyurular</a>
+        <a href="/Mesajlar/GelenKutusu/"><i class="fa fa-fw fa-inbox"></i>&nbsp;Mesajlar</a>
+        <a href="/Yorumlar/Liste/"><i class="fa fa-fw fa-comments"></i>&nbsp;Yorumlar</a>
+        <a href="#contact"><i class="fa fa-fw fa-usd"></i>&nbsp;Kasa</a>
+        <a href="/AdminLogin/Logout/"><i class="fa fa-fw fa-sign-out"></i>&nbsp;Çıkış</a>
+    </div>
+
+    <div class="main">
+      @RenderBody()
+    </div>
+
+</body>
+</html>

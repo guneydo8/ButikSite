@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="60a4083ffc654e4095cb17b1425eafad" Name="Diagram1" ZoomLevel="100">
+        <EntityTypeShape EntityType="ButikSiteModel.TblKategoriler" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ButikSiteModel.TblMarkalar" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ButikSiteModel.TblMüşteriler" Width="1.5" PointX="7.25" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ButikSiteModel.TblÜrünler" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="ButikSiteModel.FK_TblÜrünler_TblKategoriler" ManuallyRouted="false" />
+        <AssociationConnector Association="ButikSiteModel.FK_TblÜrünler_TblMarkalar" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ButikSiteModel.TblSatışlar" Width="1.5" PointX="9.5" PointY="2.625" />
+        <AssociationConnector Association="ButikSiteModel.FK_TblSatışlar_TblMüşteriler" />
+        <AssociationConnector Association="ButikSiteModel.FK_TblSatışlar_TblÜrünler" />
+        <EntityTypeShape EntityType="ButikSiteModel.TblMesajlar" Width="1.5" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="ButikSiteModel.TblYorumlar" Width="1.5" PointX="3.375" PointY="5.75" />
+        <AssociationConnector Association="ButikSiteModel.FK_TblMesajlar_TblMüşteriler" />
+        <AssociationConnector Association="ButikSiteModel.FK_TblYorumlar_TblMüşteriler" />
+        <AssociationConnector Association="ButikSiteModel.FK_TblYorumlar_TblÜrünler" />
+        <EntityTypeShape EntityType="ButikSiteModel.TblDuyurular" Width="1.5" PointX="0.75" PointY="8.75" />
+        <EntityTypeShape EntityType="ButikSiteModel.TblAdmin" Width="1.5" PointX="7.875" PointY="8.375" />
+        <EntityTypeShape EntityType="ButikSiteModel.TblFavoriler" Width="1.5" PointX="10.5" PointY="6.25" />
+        <AssociationConnector Association="ButikSiteModel.FK_TblFavoriler_TblMüşteriler" />
+        <AssociationConnector Association="ButikSiteModel.FK_TblFavoriler_TblÜrünler" />
+        <EntityTypeShape EntityType="ButikSiteModel.TblSepetim" Width="1.5" PointX="12.5" PointY="3.25" />
+        <AssociationConnector Association="ButikSiteModel.FK_TblSepetim_TblMüşteriler" />
+        <AssociationConnector Association="ButikSiteModel.FK_TblSepetim_TblÜrünler" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

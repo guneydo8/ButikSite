@@ -1,0 +1,37 @@
+﻿@model ButikSite.Models.TblÜrünler
+@{
+    ViewBag.Title = "Güncelle";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+@using (Html.BeginForm("Güncelle2", "Ürünler", FormMethod.Post))
+{
+    @Html.HiddenFor(x => x.Id)
+    <label>Ürün Adı</label>
+    @Html.TextBoxFor(x => x.ÜrünAd, new { @class = "form-control" })
+    <br />
+    <label>Kategori</label>
+    @Html.DropDownListFor(x => x.TblKategoriler.Id, (List<SelectListItem>)ViewBag.ktg, new { @class = "form-control" })
+    <br />
+    <label>Marka</label>
+    @Html.DropDownListFor(x => x.TblMarkalar.Id, (List<SelectListItem>)ViewBag.mrk, new { @class = "form-control" })
+    <br />
+    <label>Stok</label>
+    @Html.TextBoxFor(x => x.Stok, new { @class = "form-control" })
+    <br />
+    <label>Alış Fiyat</label>
+    @Html.TextBoxFor(x => x.AlışFiyat, new { @class = "form-control" })
+    <br />
+    <label>Satış Fiyat</label>
+    @Html.TextBoxFor(x => x.SatışFiyat, new { @class = "form-control" })
+    <br />
+    <label>Ürün Bilgi</label>
+    @Html.TextBoxFor(x => x.ÜrünBilgi, new { @class = "form-control" })
+    <br />
+    <label>Ürün Fotoğraf</label>
+    @Html.TextBoxFor(x => x.ÜrünGörsel, new { @class = "form-control" })
+    <br />
+
+    <button class="btn btn-primary">Güncelle</button>
+}
+

@@ -1,0 +1,27 @@
+﻿@model ButikSite.Models.TblMesajlar
+
+@{
+    ViewBag.Title = "Detay";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<br />
+<form>
+   <label>Gönderen</label>
+    @Html.TextBoxFor(x=>x.TblMüşteriler.Mail,new { @class = "form-control" })
+    <br />
+    <label>Tarih</label>
+    @Html.TextBoxFor(x=>x.Tarih,new { @class = "form-control" })
+    <br />
+    <label>Konu</label>
+    @Html.TextBoxFor(x=>x.Başlık,new { @class = "form-control" })
+    <br />
+    <label>İçerik</label>
+    @Html.TextAreaFor(x=>x.İçerik,new { @class = "form-control" })
+    <br />
+   
+   <a href="/Mesajlar/GelenKutusu/" class="btn btn-primary" style="background-color:#c50155">Vazgeç</a>
+
+</form>
+
+

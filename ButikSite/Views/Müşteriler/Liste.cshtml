@@ -1,0 +1,78 @@
+﻿@using ButikSite.Models
+@model List<TblMüşteriler>
+@{
+    ViewBag.Title = "Liste";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+
+<table class="table table-hover">
+    <tr style="background-color:#140832;color:white">
+        <th>ID</th>
+        <th>AD</th>
+        <th>SOYAD</th>
+        <th>TELEFON</th>
+        <th>MAİL</th>
+        <th>ADRES</th>
+        <th>ŞİFRE</th>
+        <th>İŞLEMLER</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.Ad</td>
+            <td>@item.Soyad</td>
+            <td>@item.Telefon</td>
+            <td>@item.Mail</td>
+            <td>@item.Adres</td>
+            <td>@item.Şifre</td>
+            <td>
+                <a href="/Müşteriler/Sil/@item.Id" class="btn btn-danger" style="background-color:#4e1cce">Sil</a>
+                <a href="/Müşteriler/Güncelle/@item.Id" class="btn btn-success" style="background-color:#2a0a7c">Güncelle</a>
+            </td>
+        </tr>
+
+    }
+</table>
+
+<button class="btn btn-primary" style="background-color:#140832" data-toggle="modal" data-target="#Modal1">Yeni Müşteri</button>
+
+<div class="modal" id="Modal1">
+    <div class="modal-dialog">
+        <div class="modal-content" style="background-color:#808080">
+            <div class="modal-header">
+                <h2 class="modal-title">Yeni Müşteri Girişi</h2>
+            </div>
+
+            <form method="post" action="/Müşteriler/Ekle/">
+                <div class="modal-body">
+                    <label>Müşteri Adı</label>
+                    <input type="text" class="form-control" name="Ad" />
+                    <br />
+                    <label>Müşteri Soyadı</label>
+                    <input type="text" class="form-control" name="Soyad" />
+                    <br />
+                    <label>Müşteri Teledon</label>
+                    <input type="text" class="form-control" name="Telefon" />
+                    <br />
+                    <label>Müşteri Mail</label>
+                    <input type="text" class="form-control" name="Mail" />
+                    <br />
+                    <label>Müşteri Adres</label>
+                    <input type="text" class="form-control" name="Adres" />
+                    <br />
+                    <label>Müşteri Şifre</label>
+                    <input type="text" class="form-control" name="Şifre" />
+                    <br />
+                    <button class="btn btn-group-justified" style="background-color:#222222;color:white">Kaydet</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+

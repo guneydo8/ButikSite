@@ -1,0 +1,53 @@
+﻿@using ButikSite.Models
+@using PagedList
+@using PagedList.Mvc
+@model PagedList.IPagedList<TblÜrünler>
+@{
+    ViewBag.Title = "Liste";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+
+<table class="table table-hover">
+    <tr style="background-color:#140832;color:white">
+        <th>ÜRÜN ID</th>
+        <th>ÜRÜN AD</th>
+        <th>KATEGORİ</th>
+        <th>MARKA</th>
+        <th>STOK</th>
+        <th>ALIŞ FİYAT</th>
+        <th>SATIŞ FİYAT</th>
+        <th>ÜRÜN AÇIKLAMA</th>
+        <th>ÜRÜN GÖRSEL</th>
+        <th>İŞLEMLER</th>
+    </tr>
+   
+        @foreach(var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.ÜrünAd</td>
+                <td>@item.TblKategoriler.KategoriAd</td>
+                <td>@item.TblMarkalar.Marka</td>
+                <td>@item.Stok</td>
+                <td>@item.AlışFiyat</td>
+                <td>@item.SatışFiyat</td>
+                <td>@item.ÜrünBilgi</td>
+                <td><a href="/Ürünler/Görsel/@item.Id" class="btn btn-file" style="background-color:#d51367;color:white">Görsel</a></td>
+                <td>
+                    <a href="/Ürünler/Sil/@item.Id" class="btn btn-danger" style="background-color:#4e1cce">Sil</a>
+                    <a href="/Ürünler/Güncelle/@item.Id" class="btn btn-success" style="background-color:#2a0a7c">Güncelle</a>
+                </td>
+            </tr>
+
+        }
+   
+</table>
+
+@Html.PagedListPager((Model),sayfa=>Url.Action("Liste",new { sayfa }))
+
+<a href="/Ürünler/Ekle/" class="btn btn-primary" style="background-color:#140832">Yeni Ürün</a>
+
+
+
+

@@ -1,0 +1,28 @@
+﻿@using ButikSite.Models
+@model List<TblFavoriler>
+@{
+    ViewBag.Title = "Liste";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<table class="table table-hover">
+    <tr style="background-color:#140832;color:white">
+        
+        <th>MÜŞTERİ</th>
+        <th>ÜRÜN</th>
+        <th>EKLENİŞ TARİHİ</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+           
+            <td>@item.TblMüşteriler.Ad @item.TblMüşteriler.Soyad</td>
+            <td>@item.TblÜrünler.ÜrünAd</td>
+            <td>@Convert.ToDateTime(item.Tarih).ToString("dd/MMMM/yyyy")</td>
+           
+        </tr>
+
+    }
+</table>
+

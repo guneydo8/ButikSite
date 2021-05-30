@@ -1,0 +1,28 @@
+﻿@model ButikSite.Models.TblÜrünler
+@{
+    ViewBag.Title = "Ekle";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<form method="post">
+    
+    <input type="text" class="form-control" name="ÜrünAd" placeholder="Ürün Adını Giriniz..." />
+    <br />
+    @Html.DropDownListFor(x => x.TblKategoriler.Id, (List<SelectListItem>) ViewBag.ktg, new { @class = "form-control" })
+    <br />
+    @Html.DropDownListFor(x=>x.TblMarkalar.Id,(List<SelectListItem>) ViewBag.mrk,new { @class="form-control"})
+    <br />
+    <input type="text" class="form-control" name="Stok" placeholder="Stok..." />
+    <br />
+    <input type="text" class="form-control" name="AlışFiyat" placeholder="Alış Fiyat..." />
+    <br />
+    <input type="text" class="form-control" name="SatışFiyat" placeholder="Satış Fiyat..." />
+    <br />
+    <input type="text" class="form-control" name="ÜrünBilgi" placeholder="Ürün Bilgi..." />
+    <br />
+    <input type="text" class="form-control" name="ÜrünGörsel" placeholder="Ürün Görsel..." />
+    <br />
+
+    <button class="btn btn-primary">Kaydet</button>
+</form>
+

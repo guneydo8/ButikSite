@@ -1,0 +1,46 @@
+﻿@using ButikSite.Models
+@model List<TblMesajlar>
+@{
+    ViewBag.Title = "GelenKutusu";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+
+<table class="table table-hover">
+    <tr style="background-color:#140832;color:white">
+
+        <th>ID</th>
+        <th>GÖNDEREN</th>
+        <th>KONU</th>
+        <th>TARİH</th>
+
+        <th>İŞLEMLER</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Id</td>
+
+            <td>@item.TblMüşteriler.Mail</td>
+            
+            <td>@item.Başlık</td>
+            <td>@Convert.ToDateTime(item.Tarih).ToString("dd//MM/yyyy")</td>
+            
+
+            <td>
+                <a href="/Mesajlar/Detay/@item.Id" class="btn btn-danger" style="background-color:#4e1cce">Mesajı Gör</a>
+               
+
+            </td>
+        </tr>
+
+    }
+</table>
+
+
+
+
+

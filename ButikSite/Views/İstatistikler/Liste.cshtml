@@ -1,0 +1,219 @@
+﻿
+@{
+    ViewBag.Title = "Liste";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+
+
+<link href="~/web2/css/jqvmap.css" rel="stylesheet" />
+<link href="~/web2/css/style.css" rel="stylesheet" />
+<script src="~/web2/js/Chart1.js"></script>
+
+<script src="~/web2/js/jquery.min.js"></script>
+
+
+
+
+<body style="background-color:#cfbebe">
+
+    <form>
+
+
+
+        <div class="list_of_members" style="height:150px">
+            <div class="sales">
+                <div class="icon">
+                    <i class="dollar"></i>
+                </div>
+                <div class="icon-text">
+                    <h3>@ViewBag.d1</h3>
+                    <p>Müşteri Sayısı</p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="new-users">
+                <div class="icon">
+                    <i class="user1"></i>
+                </div>
+                <div class="icon-text">
+                    <h3>@ViewBag.d2</h3>
+                    <p>Ürün Sayısı</p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="orders">
+                <div class="icon">
+                    <i class="order"></i>
+                </div>
+                <div class="icon-text">
+                    <h3>@ViewBag.d3</h3>
+                    <p>Kategori Sayısı</p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="visitors">
+                <div class="icon">
+                    <i class="visit"></i>
+                </div>
+                <div class="icon-text">
+                    <h3>@ViewBag.d4</h3>
+                    <p>Marka Sayısı</p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="list_of_members" style="height:150px">
+            <div class="sales">
+                <div class="icon">
+                    <i class="dollar"></i>
+                </div>
+                <div class="icon-text">
+                    <h3>@ViewBag.d5</h3>
+                    <p>Satış Sayısı</p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="new-users">
+                <div class="icon">
+                    <i class="user1"></i>
+                </div>
+                <div class="icon-text">
+                    <h3>@ViewBag.d6</h3>
+                    <p>Yorum Sayısı</p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="orders">
+                <div class="icon">
+                    <i class="order"></i>
+                </div>
+                <div class="icon-text">
+                    <h3>@ViewBag.d7</h3>
+                    <p>Duyuru Sayısı</p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="visitors">
+                <div class="icon">
+                    <i class="visit"></i>
+                </div>
+                <div class="icon-text">
+                    <h3>@ViewBag.d8</h3>
+                    <p>Mesaj Sayısı</p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="list_of_members" style="height:150px">
+            <div class="sales">
+                <div class="icon">
+                    <i class="dollar"></i>
+                </div>
+                <div class="icon-text">
+                    <h3>@ViewBag.d9</h3>
+                    <p>En Çok Satılan Ürün</p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="new-users">
+                <div class="icon">
+                    <i class="user1"></i>
+                </div>
+                <div class="icon-text">
+                    <h3>@ViewBag.d10</h3>
+                    <p>En Az Satılan Ürün</p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="orders">
+                <div class="icon">
+                    <i class="order"></i>
+                </div>
+                <div class="icon-text">
+                    <h3>@ViewBag.d11</h3>
+                    <p>En Çok Satılan Kategori</p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="visitors">
+                <div class="icon">
+                    <i class="visit"></i>
+                </div>
+                <div class="icon-text">
+                    <h3>@ViewBag.d12</h3>
+                    <p>En Az Satılan Kategori</p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="list_of_members" style="height:150px">
+            <div class="sales">
+                <div class="icon">
+                    <i class="dollar"></i>
+                </div>
+                <div class="icon-text">
+                    <h3>@ViewBag.d13</h3>
+                    <p>En Çok Satılan Marka</p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="new-users">
+                <div class="icon">
+                    <i class="user1"></i>
+                </div>
+                <div class="icon-text">
+                    <h3>@ViewBag.d14</h3>
+                    <p>En Az Satılan Marka</p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="orders">
+
+                <div class="icon-text">
+                    <h3>@ViewBag.d15</h3>
+                    <p>En Aktif Müşteri</p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="visitors">
+                <div class="icon">
+                    <i class="visit"></i>
+                </div>
+                <div class="icon-text">
+                    <h3>@ViewBag.d16</h3>
+                    <p>En Pasif Müşteri</p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+    </form>
+</body>
+
+
+
+
+
+
+
+
+
+
+
+

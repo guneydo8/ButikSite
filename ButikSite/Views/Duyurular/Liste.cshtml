@@ -1,0 +1,62 @@
+﻿@using ButikSite.Models
+@model List<TblDuyurular>
+@{
+    ViewBag.Title = "Liste";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+
+<table class="table table-hover">
+    <tr style="background-color:#140832;color:white">
+        <th>DUYURU ID</th>
+        <th>KONU</th>
+        <th>DUYURU</th>
+        <th>TARİH</th>
+        <th>İŞLEMLER</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>@item.Id</td>
+    <td>@item.DuyuruBaşlık</td>
+    <td>@item.Duyuruİçerik</td>
+   
+    <td>@Convert.ToDateTime(item.Tarih).ToString("dd/MM/yyyy")</td>
+    
+    <td>
+        <a href="/Duyurular/Sil/@item.Id" class="btn btn-danger" style="background-color:#4e1cce">Sil</a>
+        <a href="/Duyurular/Güncelle/@item.Id" class="btn btn-success" style="background-color:#2a0a7c">Güncelle</a>
+    </td>
+</tr>
+
+    }
+</table>
+
+
+<button class="btn btn-primary" style="background-color:#140832" data-toggle="modal" data-target="#Modal1">Yeni Duyuru</button>
+
+<div class="modal" id="Modal1">
+    <div class="modal-dialog">
+        <div class="modal-content" style="background-color:#808080">
+            <div class="modal-header">
+                <h2 class="modal-title">Yeni Duyuru Girişi</h2>
+            </div>
+
+            <form method="post" action="/Duyurular/Ekle/">
+                <div class="modal-body">
+                    <label>Konu</label>
+                    <input type="text" class="form-control" name="DuyuruBaşlık" />
+                    <br />
+                    <label>Duyuru</label>
+                    <input type="text" class="form-control" name="Duyuruİçerik" />
+                    <br />
+                    <button class="btn btn-group-justified" style="background-color:#222222;color:white">Oluştur</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

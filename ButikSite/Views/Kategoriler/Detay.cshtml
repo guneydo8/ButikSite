@@ -1,0 +1,35 @@
+﻿@using ButikSite.Models
+@model List<TblÜrünler>
+@{
+    ViewBag.Title = "Detay";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<table class="table table-hover">
+    <tr style="background-color:#140832;color:white">
+        <th>ÜRÜN ADI</th>
+        <th>MARKA</th>
+        <th>STOK</th>
+        <th>ALIŞ FİYAT</th>
+        <th>SATIŞ FİYAT</th>
+        <th>ÜRÜN BİLGİ</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+           
+            <td>@item.ÜrünAd</td>
+            <td>@item.TblMarkalar.Marka</td>
+            <td>@item.Stok</td>
+            <td>@item.AlışFiyat</td>
+            <td>@item.SatışFiyat</td>
+            <td>@item.ÜrünBilgi</td>
+           
+        </tr>
+
+    }
+</table>
+
+
+
